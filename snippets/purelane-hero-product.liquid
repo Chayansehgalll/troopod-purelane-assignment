@@ -1,0 +1,41 @@
+{% comment %}
+  Renders a hero product image using real Shopify product data.
+  Falls back to a placeholder if no image exists.
+
+  Usage:
+    {% render 'purelane-hero-product',
+       product: block.settings.product_1,
+       class: 'pl-a pl-d1-hp' %}
+{% endcomment %}
+
+{%- if product != blank and product.featured_image != blank -%}
+  <img
+    class="pl-hp {{ class }}"
+    src="{{ product.featured_image | image_url: width: 600 }}"
+    srcset="
+      {{ product.featured_image | image_url: width: 300 }} 300w,
+      {{ product.featured_image | image_url: width: 600 }} 600w,
+      {{ product.featured_image | image_url: width: 900 }} 900w
+    "
+    sizes="(max-width: 900px) 88vw, 40vw"
+    width="{{ product.featured_image.width }}"
+    height="{{ product.featured_image.height }}"
+    alt="{{ product.featured_image.alt | default: product.title | escape }}"
+    loading="eager"
+    fetchpriority="high"
+  >
+{%- else -%}
+  {%- comment -%} Placeholder for missing image (or unset product) {%- endcomment -%}
+  <div
+    class="pl-hp {{ class }}"
+    role="img"
+    aria-label="{{ product.title | default: 'Product image placeholder' | escape }}"
+    style="background: linear-gradient(158deg, rgba(75,58,143,.12), rgba(75,58,143,.28)); border-radius: 16px; display: flex; align-items: center; justify-content: center; min-width: 120px;"
+  >
+    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="rgba(75,58,143,.5)" stroke-width="1.4" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <circle cx="9" cy="9" r="2"/>
+      <path d="m21 15-5-5L5 21"/>
+    </svg>
+  </div>
+{%- endif -%}
