@@ -1,10 +1,14 @@
 # Purelane Homepage — AI Product Engineer Assignment
 
+## Context
+
+This is my first Shopify theme build. I used an AI agent to write most of the Liquid, CSS, and JS, with me directing the architecture, verifying output against the design, configuring the theme editor, and debugging what broke. AI workflow notes below are honest about where the agent broke and where I caught it.
+
 ## Deliverables
 
 - **Dev store:** https://purelane-dev-4qhpbu7t.myshopify.com
-- **Storefront password:** [paste from Step 10]
-- **Repo:** [your GitHub repo URL]
+- **Storefront password:** ChayanSehgal
+- **Repo:** https://github.com/Chayansehgalll/troopod-purelane-assignment
 
 ## Sections Shipped
 
@@ -61,20 +65,22 @@ Product-level metafields under `custom` namespace:
 
 ## AI Workflow Notes
 
-**What I delegated to agents:**
-- First-pass Liquid scaffolding — schema JSON is repetitive; agents nail this.
-- CSS diff between the prototype's dark and light themes — agent extracted the deltas quickly.
-- Base64 asset audit — identifying which SVGs were reused vs. one-off.
-- Regex-based find-and-replace for class prefixing.
+This build was done end-to-end with an AI agent as the primary code writer. My role was direction, verification, debugging feedback, and merchant configuration.
 
-**Where agents failed me:**
-- **Liquid array-with-filter syntax** — `delays[forloop.index0 | modulo: 4]` won't parse; Shopify requires the modulo in a separate `assign`. Agent produced this repeatedly. Fixed by hand.
-- **File placement** — agent generated correct file content but sometimes wrote to `snippets/` when a section was needed. Always caught by the CLI push at least, but wasted round trips.
-- **Product metafield access** — agents defaulted to `product.metafields.custom.foo` when the correct pattern for typed metafields is `.value` chained on. Would break silently.
-- **Schema JSON validity** — occasional invalid preset structures. Shopify's linter caught them but slowed things.
+**What worked well:**
+- Agent generated full Liquid section files with valid schema on the first pass most of the time.
+- CSS extraction from the 148KB prototype — agent isolated the light-theme palette and produced clean design tokens.
+- Repetitive patterns (schema JSON, block presets, snippet parameters) — agent handled these faster than I could type.
+- Debugging Shopify CLI errors — pasting the error output back gave me a fix within one round trip.
 
-**If I had to do 20 of these:**
-- **Schema generator CLI** — pass a spec, get a valid section skeleton with block scaffolding, preset defaults, and typed metafield accessors.
-- **Pre-commit Liquid linter** — catch the array/filter/modulo class of errors before push. Would save 10+ minutes per section.
-- **Pattern library** — the four card variants (product / combo / tier / review) share ~60% structure. A single `pl-card` primitive with slots would remove hundreds of lines of duplicated CSS.
-- **Scaffold section template** — every section starts with the same imports, wrapper, panel head, reveal setup. `sections/_scaffold.liquid` with placeholders would remove boilerplate.
+**Where the agent broke:**
+- **Liquid syntax edge cases** — filters inside array brackets (`delays[forloop.index0 | modulo: 4]`) don't parse; had to extract to a separate `assign`. Agent produced this pattern multiple times before I caught it.
+- **File placement** — agent sometimes generated a section file but I created it in `snippets/` by mistake. The error surfaced only on push. Would be nice to have a linter that flags "schema tag in snippet folder".
+- **Product metafield access** — first pass used `product.metafields.custom.badge_label` directly instead of `.value`. Silent failure in production.
+- **Missing files** — a few times I ran `shopify theme push` and got errors because I hadn't saved a file or hadn't created one referenced in `templates/index.json`.
+
+**What I'd systematise for 20 more of these:**
+- Pre-commit Liquid linter that catches the array/filter class of errors before push.
+- A schema-JSON validator in the loop — Shopify's own linter catches it eventually but slow.
+- A section scaffold command — every section starts with the same imports and wrapper structure.
+- Better checklist for file placement: schema goes in `sections/`, everything else in `snippets/`.
