@@ -50,7 +50,8 @@
       >
         {%- assign delays = 'pl-rv-d1,pl-rv-d2,pl-rv-d3,pl-rv-d4' | split: ',' -%}
         {%- for product in collection.products limit: product_limit -%}
-          {%- assign delay = delays[forloop.index0 | modulo: 4] -%}
+          {%- assign delay_index = forloop.index0 | modulo: 4 -%}
+          {%- assign delay = delays[delay_index] -%}
           <div role="listitem">
             {%- render 'purelane-product-card',
               product: product,
