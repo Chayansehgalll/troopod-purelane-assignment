@@ -1,0 +1,381 @@
+/* ==========================================================================
+   PURELANE — BASE STYLES
+   Design tokens, typography, utilities and glass effect.
+   Loaded once, used by all Purelane sections.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Colours */
+  --pl-ink: #f4f0fb;
+  --pl-brand: #4b3a8f;
+  --pl-brand-lt: #6b55b8;
+  --pl-paper: #241a3d;
+  --pl-paper-2: rgba(36, 26, 61, 0.78);
+  --pl-paper-3: rgba(36, 26, 61, 0.56);
+  --pl-accent: #b8701c;
+  --pl-accent-2: #c9761d;
+  --pl-surface: #17102b;
+
+  /* Glass effect */
+  --pl-g-bg: linear-gradient(
+    158deg,
+    rgba(255, 255, 255, 0.8),
+    rgba(236, 230, 247, 0.56) 58%,
+    rgba(222, 212, 240, 0.5)
+  );
+  --pl-g-line: rgba(75, 58, 143, 0.16);
+  --pl-g-shadow: 0 22px 54px rgba(58, 44, 112, 0.13);
+  --pl-g-inset: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+
+  /* Layout */
+  --pl-maxw: 1180px;
+  --pl-sec-y: 34px;
+  --pl-r: 26px;
+  --pl-r-sm: 16px;
+
+  /* Motion */
+  --pl-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (max-width: 760px) {
+  :root {
+    --pl-sec-y: 22px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY UTILITIES
+   -------------------------------------------------------------------------- */
+.pl-d1,
+.pl-d2,
+.pl-d3,
+.pl-d4 {
+  font-family: "Outfit", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.018em;
+  font-weight: 800;
+  line-height: 0.87;
+  color: var(--pl-surface);
+  margin: 0;
+}
+
+.pl-d1 {
+  font-size: clamp(48px, 8.6vw, 112px);
+}
+.pl-d2 {
+  font-size: clamp(30px, 4.6vw, 54px);
+  line-height: 0.94;
+}
+.pl-d3 {
+  font-size: clamp(21px, 2.5vw, 30px);
+  line-height: 1.04;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.pl-d4 {
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.14;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+@media (max-width: 760px) {
+  .pl-d1 {
+    font-size: clamp(44px, 13.5vw, 64px);
+  }
+}
+
+.pl-lime {
+  color: var(--pl-accent);
+}
+
+.pl-lede {
+  font-size: clamp(15px, 1.35vw, 17.5px);
+  color: var(--pl-paper-2);
+  max-width: 44ch;
+  line-height: 1.62;
+}
+
+.pl-body-s {
+  font-size: 14.5px;
+  color: var(--pl-paper-2);
+  line-height: 1.66;
+}
+
+.pl-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pl-paper-3);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   LAYOUT WRAPPER
+   -------------------------------------------------------------------------- */
+.pl-wrap {
+  max-width: var(--pl-maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION SHELL
+   -------------------------------------------------------------------------- */
+.pl-section {
+  position: relative;
+  padding: var(--pl-sec-y) 0;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--pl-paper);
+  background: var(--pl-ink);
+}
+
+.pl-sec-pad {
+  padding: clamp(26px, 3.4vw, 40px);
+}
+
+.pl-panel-head {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.pl-panel-head .pl-d2 {
+  margin-bottom: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   RULE DIVIDER
+   -------------------------------------------------------------------------- */
+.pl-rule {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 0 0 20px;
+  max-width: 270px;
+}
+
+.pl-rule i {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(75, 58, 143, 0.34), transparent);
+}
+
+.pl-rule svg {
+  width: 16px;
+  height: 16px;
+  color: var(--pl-accent);
+  flex: 0 0 auto;
+}
+
+.pl-panel-head .pl-rule {
+  margin: 0 auto;
+  justify-content: center;
+  max-width: 240px;
+}
+
+.pl-panel-head .pl-rule i:first-child {
+  background: linear-gradient(90deg, transparent, rgba(75, 58, 143, 0.34));
+}
+
+/* --------------------------------------------------------------------------
+   GLASS EFFECT
+   -------------------------------------------------------------------------- */
+.pl-glass {
+  background: var(--pl-g-bg);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--pl-g-line);
+  border-radius: var(--pl-r);
+  box-shadow: var(--pl-g-shadow), var(--pl-g-inset);
+  position: relative;
+  overflow: hidden;
+}
+
+.pl-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.55),
+    transparent 32%,
+    transparent 74%,
+    rgba(201, 118, 29, 0.06)
+  );
+}
+
+.pl-glass-2 {
+  background: linear-gradient(
+    158deg,
+    rgba(255, 255, 255, 0.66),
+    rgba(236, 230, 247, 0.44)
+  );
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid rgba(75, 58, 143, 0.13);
+  border-radius: var(--pl-r);
+  box-shadow:
+    0 16px 38px rgba(58, 44, 112, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 760px) {
+  .pl-glass {
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+  .pl-glass-2 {
+    backdrop-filter: blur(12px) saturate(130%);
+    -webkit-backdrop-filter: blur(12px) saturate(130%);
+  }
+  .pl-sec-pad {
+    padding: 22px 18px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS
+   -------------------------------------------------------------------------- */
+.pl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition: 0.35s var(--pl-ease);
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.pl-btn svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.pl-btn-primary {
+  background: linear-gradient(135deg, #00706a, #004b46);
+  color: #f4fdf6;
+  box-shadow:
+    0 12px 26px rgba(0, 80, 74, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.pl-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 36px rgba(0, 80, 74, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  color: #f4fdf6;
+}
+
+.pl-btn-ghost {
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(75, 58, 143, 0.22);
+  color: #01423b;
+}
+
+.pl-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  color: #01423b;
+}
+
+.pl-btn-sm {
+  height: 38px;
+  padding: 0 18px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+/* --------------------------------------------------------------------------
+   FOCUS STATES (accessibility)
+   -------------------------------------------------------------------------- */
+.pl-section :focus-visible {
+  outline: 2px solid #4f7d10;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   REVEAL ON SCROLL
+   -------------------------------------------------------------------------- */
+.pl-rv {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(7px);
+  transition:
+    opacity 0.95s var(--pl-ease),
+    transform 0.95s var(--pl-ease),
+    filter 0.95s var(--pl-ease);
+}
+
+.pl-rv.pl-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.pl-rv-d1 {
+  transition-delay: 0.09s;
+}
+.pl-rv-d2 {
+  transition-delay: 0.18s;
+}
+.pl-rv-d3 {
+  transition-delay: 0.27s;
+}
+.pl-rv-d4 {
+  transition-delay: 0.36s;
+}
+.pl-rv-d5 {
+  transition-delay: 0.45s;
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pl-rv {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .pl-btn:hover {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   THEME EDITOR SAFETY
+   Ensure sections work in isolation without depending on page-level styles.
+   -------------------------------------------------------------------------- */
+.pl-section img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pl-section svg {
+  display: block;
+}
+
+.pl-section * {
+  box-sizing: border-box;
+}
