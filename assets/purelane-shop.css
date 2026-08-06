@@ -1,0 +1,214 @@
+/* ==========================================================================
+   PURELANE — SHOP SECTION
+   ========================================================================== */
+
+.pl-shop {
+  position: relative;
+  padding: var(--pl-sec-y) 0;
+  background: var(--pl-ink);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER
+   -------------------------------------------------------------------------- */
+.pl-shop-head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.pl-shop-head .pl-d2 {
+  margin: 12px 0;
+}
+
+/* --------------------------------------------------------------------------
+   PRODUCT GRID
+   -------------------------------------------------------------------------- */
+.pl-shelf {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 860px) {
+  .pl-shelf {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PRODUCT CARD
+   -------------------------------------------------------------------------- */
+.pl-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.4s var(--pl-ease);
+  border-radius: var(--pl-r);
+}
+
+.pl-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Shot (image area) */
+.pl-card-shot {
+  height: 150px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg,
+    rgba(255,255,255,.60),
+    rgba(236,230,247,.42));
+  border: 1px solid rgba(75, 58, 143, .10);
+}
+
+@media (max-width: 760px) {
+  .pl-card-shot {
+    height: 126px;
+  }
+}
+
+.pl-card-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  padding: 8px;
+  filter: drop-shadow(0 8px 13px rgba(0, 74, 66, .13));
+}
+
+/* Placeholder (no image) */
+.pl-card-shot-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(75, 58, 143, .35);
+}
+
+.pl-card-shot-placeholder svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Sold out overlay */
+.pl-card-shot--soldout::after {
+  content: "Sold out";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(244, 240, 251, .82);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pl-paper-3);
+  border-radius: 14px;
+}
+
+/* Badge pill */
+.pl-card-pill {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .86);
+  border: 1px solid rgba(201, 118, 29, .34);
+  color: #4f7d10;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+/* Title */
+.pl-card h4 {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--pl-surface);
+  line-height: 1.2;
+  margin-bottom: 7px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Rating */
+.pl-card-rate {
+  font-size: 11.5px;
+  color: var(--pl-paper-2);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pl-card-rate b {
+  color: var(--pl-accent);
+  font-weight: 700;
+}
+
+/* Price row */
+.pl-card-pr {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.pl-card-pr strong {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 18px;
+  color: var(--pl-surface);
+  font-weight: 700;
+}
+
+.pl-card-pr s {
+  font-size: 12px;
+  color: var(--pl-paper-3);
+}
+
+.pl-card-pr em {
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--pl-accent);
+}
+
+/* Add to cart button */
+.pl-card .pl-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.pl-card .pl-btn:disabled,
+.pl-card .pl-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pl-card:hover {
+    transform: none;
+  }
+}

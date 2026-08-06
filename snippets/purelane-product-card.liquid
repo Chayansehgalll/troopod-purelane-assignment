@@ -1,0 +1,122 @@
+{% comment %}
+  Renders a single product card.
+  Reused across shop section, combos, and any other grid.
+
+  Parameters:
+    product      — Shopify product object (required)
+    reveal_delay — CSS delay class e.g. 'pl-rv-d1' (optional)
+    lazy         — true/false for image loading (optional, default true)
+{% endcomment %}
+
+{%- liquid
+  assign delay_class = reveal_delay | default: ''
+  assign loading = 'lazy'
+  if lazy == false
+    assign loading = 'eager'
+  endif
+
+  assign badge = product.metafields.custom.badge_label.value
+  assign review_score = product.metafields.custom.review_score.value | default: '4.8'
+  assign review_count = product.metafields.custom.review_count.value | default: ''
+
+  assign is_soldout = false
+  unless product.available
+    assign is_soldout = true
+  endunless
+
+  assign has_image = false
+  if product.featured_image != blank
+    assign has_image = true
+  endif
+
+  assign price = product.price | money_without_trailing_zeros
+  assign compare_price = ''
+  if product.compare_at_price > product.price
+    assign compare_price = product.compare_at_price | money_without_trailing_zeros
+    assign savings_pct = product.compare_at_price | minus: product.price
+    assign savings_pct = savings_pct | times: 100
+    assign savings_pct = savings_pct | divided_by: product.compare_at_price
+    assign savings_pct = savings_pct | round
+  endif
+-%}
+
+<article class="pl-glass pl-card pl-rv {{ delay_class }}">
+
+  {%- comment -%} Image area {%- endcomment -%}
+  <a
+    href="{{ product.url }}"
+    class="pl-card-shot {% if is_soldout %}pl-card-shot--soldout{% endif %}"
+    aria-label="{{ product.title | escape }}"
+    tabindex="0"
+  >
+    {%- if badge != blank -%}
+      <span class="pl-card-pill">{{ badge }}</span>
+    {%- endif -%}
+
+    {%- if has_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 400 }}"
+        srcset="
+          {{ product.featured_image | image_url: width: 200 }} 200w,
+          {{ product.featured_image | image_url: width: 400 }} 400w,
+          {{ product.featured_image | image_url: width: 600 }} 600w
+        "
+        sizes="(max-width: 860px) 45vw, 22vw"
+        width="{{ product.featured_image.width }}"
+        height="{{ product.featured_image.height }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        loading="{{ loading }}"
+      >
+    {%- else -%}
+      <div class="pl-card-shot-placeholder" aria-label="{{ product.title | escape }} — no image available">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="9" cy="9" r="2"/>
+          <path d="m21 15-5-5L5 21"/>
+        </svg>
+      </div>
+    {%- endif -%}
+  </a>
+
+  {%- comment -%} Title {%- endcomment -%}
+  <h4>
+    <a href="{{ product.url }}" style="color: inherit; text-decoration: none;">
+      {{ product.title }}
+    </a>
+  </h4>
+
+  {%- comment -%} Rating {%- endcomment -%}
+  {%- if review_score != blank -%}
+    <div class="pl-card-rate">
+      <b>★ {{ review_score }}</b>
+      {%- if review_count != blank -%}
+        <span>· {{ review_count }} reviews</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Price {%- endcomment -%}
+  <div class="pl-card-pr">
+    <strong>{{ price }}</strong>
+    {%- if compare_price != blank -%}
+      <s>{{ compare_price }}</s>
+      <em>{{ savings_pct }}% off</em>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Add to cart {%- endcomment -%}
+  {%- if is_soldout -%}
+    <button class="pl-btn pl-btn-ghost pl-btn-sm" disabled aria-disabled="true">
+      Sold out
+    </button>
+  {%- else -%}
+    <button
+      class="pl-btn pl-btn-ghost pl-btn-sm pl-atc"
+      data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      aria-label="Add {{ product.title | escape }} to cart"
+    >
+      Add to cart
+    </button>
+  {%- endif -%}
+
+</article>
