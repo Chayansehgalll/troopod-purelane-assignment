@@ -139,6 +139,112 @@
         "homes_count_text": "Loved by [b]12 lakh+[/b] homes"
       }
     },
+    "purelane_combos": {
+      "type": "purelane-combos",
+      "blocks": {
+        "combo_1": {
+          "type": "combo",
+          "settings": {
+            "title": "Kitchen essentials",
+            "product_count_label": "3 products",
+            "description": "Includes: Foaming Kitchen Cleaner, Dishwash Gel & Tap Cleaner. Everything for a sparkling kitchen, no need to pick separately.",
+            "save_label": "You save ₹398",
+            "flag_label": "Most popular",
+            "caption_1": "Cuts grease instantly",
+            "caption_2": "Squeaky clean dishes",
+            "caption_3": "Melts hard water stains",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "savings_label": "Save ₹398",
+            "fine_print": "Inclusive of all taxes · COD available",
+            "cta_label": "Shop bundle"
+          }
+        },
+        "combo_2": {
+          "type": "combo",
+          "settings": {
+            "title": "Laundry care bundle",
+            "product_count_label": "3 products",
+            "description": "Includes: Laundry Detergent, Fabric Conditioner & Machine Cleaner Powder. Softer, fresher wash, all in one box.",
+            "save_label": "You save ₹448",
+            "caption_1": "Removes tough stains & odour",
+            "caption_2": "Softens & freshens every wash",
+            "caption_3": "Deep-cleans your machine",
+            "price": "₹499",
+            "compare_price": "₹947",
+            "savings_label": "Save ₹448",
+            "fine_print": "Inclusive of all taxes · COD available",
+            "cta_label": "Shop bundle"
+          }
+        },
+        "combo_3": {
+          "type": "combo",
+          "settings": {
+            "title": "Complete home bundle",
+            "product_count_label": "5 products",
+            "description": "Includes: Kitchen Cleaner, Laundry Detergent, Floor Cleaner, Toilet Cleaner & Handwash. Our biggest saving box.",
+            "is_featured": true,
+            "save_label": "Biggest saving",
+            "flag_label": "Best value",
+            "caption_1": "Cuts grease instantly",
+            "caption_2": "Kills 99.9% germs",
+            "caption_3": "Gentle hydration for hands",
+            "price": "₹799",
+            "compare_price": "₹1,495",
+            "savings_label": "Save ₹696",
+            "fine_print": "Inclusive of all taxes · COD available",
+            "cta_label": "Shop bundle"
+          }
+        },
+        "combo_4": {
+          "type": "combo",
+          "settings": {
+            "title": "Bathroom deep clean",
+            "product_count_label": "3 products",
+            "description": "Includes: Toilet Cleaner, Tap Cleaner & Magic Eraser. A complete bathroom refresh in one box.",
+            "save_label": "You save ₹398",
+            "caption_1": "Kills 99.9% germs",
+            "caption_2": "Melts hard water stains",
+            "caption_3": "Scrubs away soap scum",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "savings_label": "Save ₹398",
+            "fine_print": "Inclusive of all taxes · COD available",
+            "cta_label": "Shop bundle"
+          }
+        },
+        "combo_5": {
+          "type": "combo",
+          "settings": {
+            "title": "Hard water solution kit",
+            "product_count_label": "2 products",
+            "description": "Includes: Tap Cleaner & Toilet Cleaner. A quick, focused fix for hard water stains across the home.",
+            "save_label": "You save ₹249",
+            "caption_1": "Melts hard water stains",
+            "caption_2": "Fights limescale in the bowl",
+            "price": "₹349",
+            "compare_price": "₹598",
+            "savings_label": "Save ₹249",
+            "fine_print": "Inclusive of all taxes · COD available",
+            "cta_label": "Shop bundle"
+          }
+        }
+      },
+      "block_order": [
+        "combo_1",
+        "combo_2",
+        "combo_3",
+        "combo_4",
+        "combo_5"
+      ],
+      "settings": {
+        "kicker": "Pre-built to save you money",
+        "heading": "Best selling combos",
+        "lede": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own.",
+        "swipe_hint": "Swipe for more combos",
+        "rail_note": "Tapping \"Shop bundle\" opens the bundle picker with these products already added. You can still swap anything before you pay."
+      }
+    },
     "purelane_shop": {
       "type": "purelane-shop",
       "settings": {
@@ -151,6 +257,7 @@
   "order": [
     "purelane_hero",
     "purelane_reviews",
+    "purelane_combos",
     "purelane_shop"
   ]
 }
