@@ -67,7 +67,7 @@
         "cta_primary_label": "Shop now",
         "cta_primary_url": "/collections/all",
         "cta_secondary_label": "How it works",
-        "cta_secondary_url": "#how",
+        "cta_secondary_url": "#combos",
         "carousel_interval": 3800
       }
     },
@@ -245,6 +245,61 @@
         "rail_note": "Tapping \"Shop bundle\" opens the bundle picker with these products already added. You can still swap anything before you pay."
       }
     },
+    "purelane_bundles": {
+      "type": "purelane-bundles",
+      "blocks": {
+        "tier_1": {
+          "type": "tier",
+          "settings": {
+            "tag": "Starter",
+            "qty": "2",
+            "qty_label": "Products",
+            "price": "₹349",
+            "compare_price": "₹598",
+            "per_unit": "Flat ₹174 per product",
+            "benefits": "Pick any two products\nFree shipping across India",
+            "cta_label": "Build this box"
+          }
+        },
+        "tier_2": {
+          "type": "tier",
+          "settings": {
+            "tag": "Most popular",
+            "is_best": true,
+            "qty": "3",
+            "qty_label": "Products",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "per_unit": "Flat ₹166 per product",
+            "benefits": "Pick any three products\nCovers kitchen and laundry\nFree shipping across India",
+            "cta_label": "Build this box"
+          }
+        },
+        "tier_3": {
+          "type": "tier",
+          "settings": {
+            "tag": "Whole home",
+            "qty": "5",
+            "qty_label": "Products",
+            "price": "₹799",
+            "compare_price": "₹1495",
+            "per_unit": "Flat ₹160 per product",
+            "benefits": "Pick any five products\nEvery room in one order\nFree shipping across India",
+            "cta_label": "Build this box"
+          }
+        }
+      },
+      "block_order": [
+        "tier_1",
+        "tier_2",
+        "tier_3"
+      ],
+      "settings": {
+        "kicker": "Build your bundle",
+        "heading": "One box. Every room.",
+        "lede": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way."
+      }
+    },
     "purelane_shop": {
       "type": "purelane-shop",
       "settings": {
@@ -258,6 +313,7 @@
     "purelane_hero",
     "purelane_reviews",
     "purelane_combos",
+    "purelane_bundles",
     "purelane_shop"
   ]
 }

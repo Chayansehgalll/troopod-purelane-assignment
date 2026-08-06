@@ -1,0 +1,222 @@
+/* ==========================================================================
+   PURELANE — BUNDLES TIERS SECTION
+   ========================================================================== */
+
+.pl-bundles {
+  position: relative;
+  padding: var(--pl-sec-y) 0;
+  background: var(--pl-ink);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   INTRO PANEL
+   -------------------------------------------------------------------------- */
+.pl-bundles-intro {
+  margin-bottom: 16px;
+}
+
+.pl-bundles-intro .pl-panel-head {
+  margin-bottom: 0;
+}
+
+.pl-bundles-intro .pl-lede {
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   TIER GRID
+   -------------------------------------------------------------------------- */
+.pl-tiers {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 760px) {
+  .pl-tiers {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TIER CARD
+   -------------------------------------------------------------------------- */
+.pl-tier {
+  padding: 24px 22px;
+  transition: 0.4s var(--pl-ease);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--pl-r);
+}
+
+.pl-tier:hover {
+  transform: translateY(-5px);
+}
+
+.pl-tier--best {
+  border-color: rgba(201, 118, 29, .44) !important;
+  box-shadow: 0 22px 54px rgba(58, 44, 112, .14),
+              0 0 0 1px rgba(201, 118, 29, .24),
+              var(--pl-g-inset) !important;
+}
+
+/* --------------------------------------------------------------------------
+   TIER TAG (label pill)
+   -------------------------------------------------------------------------- */
+.pl-tier-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(201, 118, 29, .14);
+  border: 1px solid rgba(201, 118, 29, .34);
+  color: #4f7d10;
+  margin-bottom: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   PRODUCT IMAGE ROW
+   -------------------------------------------------------------------------- */
+.pl-tierpix {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  height: 78px;
+  margin: -4px 0 16px;
+  padding: 8px 6px;
+  border-radius: 14px;
+  background: linear-gradient(162deg,
+    rgba(255,255,255,.54),
+    rgba(236,230,247,.34));
+  border: 1px solid rgba(75, 58, 143, .11);
+}
+
+.pl-tierpix img {
+  height: 62px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 5px 8px rgba(0, 74, 66, .13));
+  flex: 0 1 auto;
+}
+
+.pl-tierpix--five img {
+  height: 54px;
+}
+
+@media (max-width: 760px) {
+  .pl-tierpix {
+    height: 70px;
+  }
+  .pl-tierpix img {
+    height: 54px;
+  }
+  .pl-tierpix--five img {
+    height: 46px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   QUANTITY DISPLAY
+   -------------------------------------------------------------------------- */
+.pl-tier-qty {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 52px;
+  line-height: 0.9;
+  color: var(--pl-surface);
+  letter-spacing: -0.03em;
+}
+
+.pl-tier-qty small {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pl-paper-3);
+  display: block;
+  margin-top: 6px;
+}
+
+@media (max-width: 760px) {
+  .pl-tier-qty {
+    font-size: 44px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PRICE
+   -------------------------------------------------------------------------- */
+.pl-tier-price {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 27px;
+  color: var(--pl-accent);
+  margin: 16px 0 4px;
+}
+
+.pl-tier-price s {
+  font-size: 14px;
+  color: var(--pl-paper-3);
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.pl-tier-per {
+  font-size: 12px;
+  color: var(--pl-paper-2);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   BENEFITS LIST
+   -------------------------------------------------------------------------- */
+.pl-tier-list {
+  list-style: none;
+  margin: 16px 0 20px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.pl-tier-list li {
+  display: flex;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--pl-paper-2);
+  line-height: 1.4;
+}
+
+.pl-tier-list li svg {
+  width: 14px;
+  height: 14px;
+  color: #4f7d10;
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   CTA
+   -------------------------------------------------------------------------- */
+.pl-tier .pl-btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pl-tier:hover {
+    transform: none;
+  }
+}
